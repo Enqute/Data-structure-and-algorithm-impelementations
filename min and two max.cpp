@@ -13,7 +13,23 @@ float getMinimum(float numbers[], unsigned int size)
 
 float* getTwoLargestNumbers(float numbers[], unsigned int size)
 {
-
+    float first, second;
+    first = second = numbers[0];
+    for (int i = 1; i < size; i++)
+    {
+        if (first < numbers[i])
+            first = numbers[i];
+    }
+    for (int i = 1; i < size; i)
+    {
+        if (second < numbers[i])
+        {
+            if (second == first)
+                break;
+            second = numbers[i];
+        }
+    }
+    return new float[2]{ first, second };
 }
 
 float* getNumbers()
