@@ -20,13 +20,12 @@ float* getTwoLargestNumbers(float numbers[], unsigned int size)
         if (first < numbers[i])
             first = numbers[i];
     }
-    for (int i = 1; i < size; i)
+    for (int i = 1; i < size; i++)
     {
         if (second < numbers[i])
         {
-            if (second == first)
-                break;
-            second = numbers[i];
+            if (numbers[i] != first)
+                second = numbers[i];
         }
     }
     return new float[2]{ first, second };
