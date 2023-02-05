@@ -31,7 +31,7 @@ public:
 		return m_Size == 0;
 	}
 
-	const size_t IndexOf(const T& item) const
+	const int IndexOf(const T& item) const
 	{
 		ASSERT(!IsEmpty(), "[Error]: IllegalAccessException thrown from 'IndexOf()'.");
 		
