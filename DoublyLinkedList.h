@@ -96,7 +96,7 @@ public:
 	        AddLast(item);
 	    else
 	    {
-	        Node* elem = new Node{ item, nullptr };
+	        Node* elem = new Node{ item, nullptr, nullptr };
 	        Node* node = m_Head;
 	        int counter = 0;
 	        for (; (node != nullptr && counter != index - 1); node = node->Next, counter++);
