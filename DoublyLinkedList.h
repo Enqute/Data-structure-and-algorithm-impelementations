@@ -1,7 +1,8 @@
-#pragma once
-
-#include "Core.h"
+#include <iostream>
+#include <stdlib.h>
 #include <string>
+
+#define ASSERT(x, message) if (!(x)) { std::cout << message << std::endl; exit(0); }
 
 template<typename T>
 class DoublyLinkedList
@@ -84,6 +85,28 @@ public:
 			m_Tail = node;
 		}
 		m_Size++;
+	}
+	
+	void Insert(const T& item, int index)
+	{
+	    ASSERT(index >= 0 && index <= m_Size, "[Error]: IndexOutOfBoundException thrown from 'Insert(...)'.");
+	    if (index == 0)
+	        AddFirst(item);
+	    else if (index == m_Size)
+	        AddLast(item);
+	    else
+	    {
+	        Node* elem = new Node{ item, nullptr };
+	        Node* node = m_Head;
+	        int counter = 0;
+	        for (; (node != nullptr && counter != index - 1); node = node->Next, counter++);
+	        Node* temp = node->Next;
+	        node->Next = elem;
+	        elem->Prev = node;
+	        elem->Next = temp;
+	        temp->Prev = elem;
+	        m_Size++;
+	    }
 	}
 
 	const T& PeekFirst() const
@@ -188,4 +211,39 @@ public:
 
 		return data;
 	}
+	
+	const std::string ToString() const
+    {
+        std::string string = "[";
+        if (m_Size == 0)
+            string += "]";
+        else
+        {
+            for (Node* node = m_Head; node != nullptr; node = node->Next)
+            {
+                std::string right = node == m_Tail ? "]" : ", ";
+                string += std::to_string(node->Data) + right;
+            }
+        }
+        return string;
+    }
+
+    void Print() const
+    {
+        std::cout << ToString() << std::endl;
+    }
 };
+
+int main()
+{
+    DoublyLinkedList<int> numbers;
+    numbers.Add(1);
+    numbers.Add(2);
+    numbers.Add(3);
+    numbers.Add(4);
+    numbers.Insert(12, 4);
+    numbers.Insert(120, 1);
+    
+    numbers.Print();
+    std::cin.get();
+}
