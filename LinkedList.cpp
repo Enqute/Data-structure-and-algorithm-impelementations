@@ -89,6 +89,26 @@ public:
         }
         m_Size++;
     }
+    
+    void Insert(const T& item, int index)
+    {
+        ASSERT(index >= 0 && index <= m_Size, "[Error]: IndexOutOfBoundException thrown from 'Insert(...)'.");
+        if (index == 0)
+            AddFirst(item);
+        else if (index == m_Size)
+            AddLast(item);
+        else
+        {
+            Node* elem = new Node { item, nullptr };
+            int counter = 0;
+            Node* node = m_Head;
+            for (; (node != nullptr && counter != index - 1); node = node->Next, counter++);
+            Node* temp = node->Next;
+            node->Next = elem;
+            elem->Next = temp;
+            m_Size++;
+        }
+    }
 
     T& PeekFirst() const
     {
@@ -196,10 +216,15 @@ public:
     const std::string ToString() const
     {
         std::string string = "[";
-        for (Node* node = m_Head; node != nullptr; node = node->Next)
+        if (m_Size == 0)
+            string += "]";
+        else
         {
-            std::string right = node == m_Tail ? "]" : ", ";
-            string += std::to_string(node->Data) + right;
+            for (Node* node = m_Head; node != nullptr; node = node->Next)
+            {
+                std::string right = node == m_Tail ? "]" : ", ";
+                string += std::to_string(node->Data) + right;
+            }
         }
         return string;
     }
@@ -217,6 +242,8 @@ int main()
     numbers.Add(2);
     numbers.Add(3);
     numbers.Add(4);
+    numbers.Insert(12, 4);
+    numbers.Insert(120, 1);
     
     numbers.Print();
     std::cin.get();
