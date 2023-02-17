@@ -213,24 +213,24 @@ public:
 	}
 	
 	const std::string ToString() const
-    {
-        std::string string = "[";
-        if (m_Size == 0)
-            string += "]";
-        else
-        {
-            for (Node* node = m_Head; node != nullptr; node = node->Next)
-            {
-                std::string right = node == m_Tail ? "]" : ", ";
-                string += std::to_string(node->Data) + right;
-            }
-        }
-        return string;
+    	{
+		std::string string = "[";
+		if (m_Size == 0)
+	    		string += "]";
+		else
+		{
+			 for (Node* node = m_Head; node != nullptr; node = node->Next)
+	    		{
+				std::string right = node == m_Tail ? "]" : ", ";
+				string += std::to_string(node->Data) + right;
+	   		}
+		}
+		return string;
     }
 
     void Print() const
     {
-        std::cout << ToString() << std::endl;
+	std::cout << ToString() << std::endl;
     }
 };
 
