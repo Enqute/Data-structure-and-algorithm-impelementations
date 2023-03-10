@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1678389317 source:c:\users\dl_user\desktop\mms\main.cpp
+	"Program.h"
+
+1678391238 c:\users\dl_user\desktop\mms\program.h
+	<string>
+
+1678405506 source:c:\users\dl_user\desktop\mms\program.cpp
+	"Program.h"
+	<iostream>
+	<string>
+	<cstdlib>
+	"Movie.h"
+	"Core.h"
+
+1678402248 c:\users\dl_user\desktop\mms\movie.h
+	<string>
+
+1678389688 c:\users\dl_user\desktop\mms\core.h
+	<iostream>
+	<stdlib.h>
+	<string>
+
+1678405974 source:c:\users\dl_user\desktop\mms\movie.cpp
+	"Movie.h"
+	"Core.h"
+	<fstream>
+	<cstdlib>
+	<algorithm>
+
