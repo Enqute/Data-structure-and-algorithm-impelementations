@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <fstream>
 #include "Movie.h"
 #include "Core.h"
 
@@ -49,7 +50,21 @@ program:
     std::cin >> choice;
 
     if (choice == 1)
-        LoadDatabase("movies.txt");
+    {
+        std::ifstream file("modified-movies.txt");
+        if (file.is_open())
+        {
+            char choice;
+            std::cout << "Do you want to load the previously saved (s) file or the default (*) one (s -> saved, * -> default): ";
+            std::cin >> choice;
+
+            if (choice == 's' || choice == 'S')
+                LoadDatabase("modified-movies.txt");
+            else LoadDatabase("movies.txt");
+        }
+        else LoadDatabase("movies.txt");
+        file.close();
+    }
     else if (choice == 2)
         AddMovies();
     else if (choice == 3)
@@ -74,7 +89,7 @@ program:
         std::cin >> isGoingToSave;
         if (isGoingToSave== 'Y' || isGoingToSave== 'y')
         {
-            // TODO: to be save here
+            SaveStatus("modified-movies.txt");
             std::cout << "[Success] The status saved successfully, Good Bye :)\n";
         }
         else std::cout << "[Info] Good Bye :)\n";
@@ -543,39 +558,51 @@ sortMovies:
 
     if (choice == 1)
     {
-        SortByID();
+        InsertionSort("id");
         DisplayForward();
         system("pause");
     }
     else if (choice == 2)
     {
-        SortByTitle();
+        InsertionSort("title");
         DisplayForward();
         system("pause");
     }
     else if (choice == 3)
     {
-
+        InsertionSort("price");
+        DisplayForward();
+        system("pause");
     }
     else if (choice == 4)
     {
-
+        InsertionSort("length");
+        DisplayForward();
+        system("pause");
     }
     else if (choice == 5)
     {
-
+        InsertionSort("rate");
+        DisplayForward();
+        system("pause");
     }
     else if (choice == 6)
     {
-
+        InsertionSort("genre");
+        DisplayForward();
+        system("pause");
     }
     else if (choice == 7)
     {
-
+        InsertionSort("language");
+        DisplayForward();
+        system("pause");
     }
     else if (choice == 8)
     {
-
+        InsertionSort("date");
+        DisplayForward();
+        system("pause");
     }
     else
     {
@@ -619,20 +646,33 @@ void OtherFunctionalities()
 
 void Help()
 {
-
+    system("cls");
+    std::ifstream file("help-desk.txt");
+    if (file.is_open())
+    {
+        std::string line;
+        while (std::getline(file, line))
+            std::cout << line << "\n";
+        std::cout << "\n\n";
+    }
+    else std::cout << "[Error] the \"help-desk.txt\" file doesn't exist in your directory.\n";
+    file.close();
+    system("pause");
 }
 
 void About()
 {
-    std::cout << "█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█\n";
-    std::cout << "█                       THIS PROGRAM IS DEVELOPED BY                         █\n";
-    std::cout << "█■■■■■■■■■■■■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█\n";
-    std::cout << "█          NAME            █     ID        █             E-MAIL              █\n";
-    std::cout << "█■■■■■■■■■■■■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█\n";
-    std::cout << "█  1. Anduamlak Yalewlet   █  BDU1404555   █     anduamlak2014@gmail.com     █\n";
-    std::cout << "█■■■■■■■■■■■■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█\n";
-    std::cout << "█  2. Eyob Zekarias        █  BDU1404462   █     eyobzekarias23@gmail.com    █\n";
-    std::cout << "█■■■■■■■■■■■■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█\n";
-    std::cout << "█  3. Henok Eshetu         █  BDU1410525   █     henokesh95@gmail.com        █\n";
-    std::cout << "█■■■■■■■■■■■■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█\n";
+    system("cls");
+    std::cout << " ____________________________________________________________________________\n";
+    std::cout << "|                       THIS PROGRAM IS DEVELOPED BY                         |\n";
+    std::cout << "|____________________________________________________________________________|\n";
+    std::cout << "|          NAME            |     ID        |             E-MAIL              |\n";
+    std::cout << "|--------------------------|---------------|---------------------------------|\n";
+    std::cout << "|  1. Anduamlak Yalewlet   |  BDU1404555   |     anduamlak2014@gmail.com     |\n";
+    std::cout << "|--------------------------|---------------|---------------------------------|\n";
+    std::cout << "|  2. Eyob Zekarias        |  BDU1404462   |     eyobzekarias23@gmail.com    |\n";
+    std::cout << "|--------------------------|---------------|---------------------------------|\n";
+    std::cout << "|  3. Henok Eshetu         |  BDU1410525   |     henokesh95@gmail.com        |\n";
+    std::cout << "|__________________________|_______________|_________________________________|\n";
+    system("pause");
 }

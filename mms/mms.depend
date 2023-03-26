@@ -28,3 +28,35 @@
 	"Movie.h"
 	"Core.h"
 
+1679863978 source:c:\users\agi\desktop\mms\main.cpp
+	<iostream>
+	<fstream>
+	"Program.h"
+
+1679861398 c:\users\agi\desktop\mms\program.h
+	<string>
+
+1679871820 source:c:\users\agi\desktop\mms\movie.cpp
+	"Movie.h"
+	"Core.h"
+	<fstream>
+	<cstdlib>
+	<algorithm>
+
+1679871666 c:\users\agi\desktop\mms\movie.h
+	<string>
+
+1678546856 c:\users\agi\desktop\mms\core.h
+	<iostream>
+	<stdlib.h>
+	<string>
+
+1679868737 source:c:\users\agi\desktop\mms\program.cpp
+	"Program.h"
+	<iostream>
+	<string>
+	<cstdlib>
+	<fstream>
+	"Movie.h"
+	"Core.h"
+
